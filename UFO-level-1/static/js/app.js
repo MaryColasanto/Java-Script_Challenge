@@ -14,7 +14,7 @@ var tableData = data;
 var tableColumns = ["datetime", "city", "state", "country", "shape", "durationMinutes", "comments"];
 var tableBody = d3.select("tbody");
 var searchDate = d3.select("#datetime");
-var button = d3.select("filter-btn");
+var button = d3.select("#filter-btn");
 
 //Create function to load all data to the table
 var loadTable = (ufoData) => {
@@ -41,7 +41,7 @@ button.on("click", () => {
 
     tableBody.html("");
     
-    if(response.filterDate.length !== 0) {
+    if(filterDate.length !== 0) {
         loadTable(filterDate);
     }
         else {
