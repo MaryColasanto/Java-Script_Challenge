@@ -16,7 +16,7 @@ var tableBody = d3.select("tbody");
 var searchDate = d3.select("#datetime");
 var button = d3.select("filter-btn");
 
-//Make table
+//Create function to load all data to the table
 var loadTable = (ufoData) => {
     
     tableBody.html("");
@@ -27,5 +27,24 @@ var loadTable = (ufoData) => {
     });
 
 }
-
+//Load data to table
 loadTable(tableData);
+
+//Enable search function
+button.on("click", () => {
+
+    d3.event.preventDefault();
+
+    userDate = searchDate.property("value");
+
+    var filterDate = tableData.filter(tableData => tableData.datetime === userDate);
+
+    tableBody.html("");
+    
+    if(response.filterDate.length !== 0) {
+        loadTable(filterDate);
+    }
+        else {
+            tableBody.append("tr").append("td").text("There were no sightings on this date.");
+        }
+});
